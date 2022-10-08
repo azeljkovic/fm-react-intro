@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { useParams } from "react-router-dom";
-import Carousel from "./Carousel";
+import Carousel from "./Carousel.jsx";
+import ErrorBoundary from "./ErrorBoundary.jsx";
 
 // const Details = () => {
 //   const { id } = useParams();
@@ -26,6 +27,9 @@ class Details extends Component {
       return <h2>loading...</h2>;
     }
 
+    // ErrorBoundary test
+    // throw new Error("crashed x.x");
+
     const { animal, breed, city, state, description, name, images } = this.state;
     return (
       <div className="details">
@@ -43,7 +47,11 @@ class Details extends Component {
 
 const WrappedDetails = () => {
   const params = useParams();
-  return <Details params={params} />;
+  return (
+    <ErrorBoundary>
+      <Details params={params} />
+    </ErrorBoundary>
+  );
 };
 
 export default WrappedDetails;
