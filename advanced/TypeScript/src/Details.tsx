@@ -1,9 +1,9 @@
 import { Component, useContext } from "react";
 import { useParams } from "react-router-dom";
-import Carousel from "./Carousel.jsx";
-import ErrorBoundary from "./ErrorBoundary.jsx";
-import ThemeContext from "./ThemeContext.jsx";
-import Modal from "./Modal.jsx";
+import Carousel from "./Carousel";
+import ErrorBoundary from "./ErrorBoundary";
+import ThemeContext from "./ThemeContext";
+import Modal from "./Modal";
 import {PetAPIResponse, Animal} from "./APIResponseTypes";
 
 class Details extends Component<{params: {id?: string}}> {
@@ -49,7 +49,16 @@ class Details extends Component<{params: {id?: string}}> {
         <div>
           <h1>{name}</h1>
           <h2>{animal} - {breed} - {city}, {state}</h2>
-          <button onClick={this.toggleModal} style={{ backgroundColor: this.props.theme }}>Adopt {name}</button>
+          <ThemeContext.Consumer>
+            {([theme]) => (
+              <button
+                onClick={this.toggleModal}
+                style={{ backgroundColor: theme }}
+              >
+                Adopt {name}
+              </button>
+            )}
+          </ThemeContext.Consumer>
           <p>{description}</p>
           {
             showModal ? (
@@ -72,10 +81,9 @@ class Details extends Component<{params: {id?: string}}> {
 
 const WrappedDetails = () => {
   const params = useParams();
-  const [theme] = useContext(ThemeContext);
   return (
     <ErrorBoundary>
-      <Details params={params} theme={theme} />
+      <Details params={params} />
     </ErrorBoundary>
   );
 };

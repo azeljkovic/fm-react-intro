@@ -1,6 +1,8 @@
-import Pet from "./Pet.jsx";
+import Pet from "./Pet";
+import { FunctionComponent } from "react";
+import { Pet as PetType } from "./APIResponseTypes";
 
-const Results = ({ pets }) => {
+const Results: FunctionComponent<{ pets: PetType[] }> = ({ pets }) => {
   return (
     <div>
       {

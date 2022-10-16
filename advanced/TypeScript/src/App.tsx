@@ -1,8 +1,8 @@
 import { render } from "react-dom";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import SearchParams from "./SearchParams.jsx";
-import Details from "./Details.jsx";
-import ThemeContext from "./ThemeContext.jsx";
+import SearchParams from "./SearchParams";
+import Details from "./Details";
+import ThemeContext from "./ThemeContext";
 import { StrictMode, useState } from "react";
 
 const App = () => {
