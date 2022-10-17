@@ -1,16 +1,10 @@
-import { Component, useContext } from "react";
+import { Component } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "./Carousel.jsx";
 import ErrorBoundary from "./ErrorBoundary.jsx";
-import ThemeContext from "./ThemeContext.jsx";
 import Modal from "./Modal.jsx";
+import { connect} from "react-redux";
 
-// const Details = () => {
-//   const { id } = useParams();
-//   return <h2>fd fds fds</h2>;
-// };
-//
-// export default Details;
 
 class Details extends Component {
   state = { loading: true, showModal: false };
@@ -31,8 +25,6 @@ class Details extends Component {
       return <h2>loading...</h2>;
     }
 
-    // ErrorBoundary test
-    // throw new Error("crashed x.x");
 
     const { animal, breed, city, state, description, name, images, showModal } = this.state;
     return (
@@ -62,12 +54,15 @@ class Details extends Component {
   }
 }
 
+const mapStateToProps = ({theme}) => ({theme});
+
+const ReduxWrappedDetails = connect(mapStateToProps)(Details);
+
 const WrappedDetails = () => {
   const params = useParams();
-  const [theme] = useContext(ThemeContext);
   return (
     <ErrorBoundary>
-      <Details params={params} theme={theme} />
+      <Details params={params} />
     </ErrorBoundary>
   );
 };
