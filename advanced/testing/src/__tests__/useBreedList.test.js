@@ -38,13 +38,13 @@ test("gives back breeds with an animal", async () => {
     "Maltese",
     "Golden Retriever",
     "Labrador",
-    "Husky",
+    "Husky"
   ];
 
   fetch.mockResponseOnce(
     JSON.stringify({
       animal: "dog",
-      breeds,
+      breeds
     })
   );
 
