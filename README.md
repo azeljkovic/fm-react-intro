@@ -9,3 +9,15 @@ Reference React repository that contains:
 - error boundaries
 - context
 - portals/useRef/modals
+
+## Advanced
+
+Every folder is a clean, isolated version of the app used to cover some advanced concepts in React:
+
+- code splitting
+- Redux
+- server-side rendering
+- TailwindCSS
+- testing
+- TypeScript
+
